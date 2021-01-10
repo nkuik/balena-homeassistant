@@ -11,11 +11,6 @@
   unit_of_measurement: "degrees"
 - platform: mqtt
   state_topic: "balena-sense/+/balena-sense"
-  value_template: "{{ ((float(value_json.fields.temperature) * 9 / 5) + 32) | round(1) }}"
-  name: "sense_temperature_f"
-  unit_of_measurement: "degrees"
-- platform: mqtt
-  state_topic: "balena-sense/+/balena-sense"
   value_template: "{{ value_json.fields.air_quality_score }}"
   name: "sense_air_quality_score"
   unit_of_measurement: "score"

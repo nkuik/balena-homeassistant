@@ -3,6 +3,12 @@ sonos:
     hosts:
       - 192.168.86.182
 
+media_player:
+  - platform: plex
+    host: 192.168.86.34
+    port: 32400
+    token: !env_var PLEX_TOKEN
+
 spotify:
   client_id: !env_var SPOTIFY_ID 
   client_secret: !env_var SPOTIFY_TOKEN
@@ -162,6 +168,12 @@ frontend:
 
 sensor: !include sensors.yaml
 
+####################################################
+#                                                  #
+#                SHOPPING LIST                     #
+#                                                  #
+####################################################
+shopping_list:
 
 ####################################################
 #                                                  #
@@ -244,9 +256,6 @@ lovelace:
       type: module
     - url: /hacsfiles/button-card/button-card.js
       type: module
-    - url: /config/themes/mini-media-player-bundle.js?v=1.11.0
-      type: module
-
 
 # switch: !include switch.yaml
 # binary_sensor: !include binary_sensors.yaml
@@ -337,3 +346,38 @@ wake_on_lan:
 #     armed_home:
 #       arming_time: 0
 #       delay_time: 0
+
+
+####################################################
+#                                                  #
+#                      Hue                         #
+#                                                  #
+####################################################
+hue:
+  bridges:
+    – host: 192.168.86.183
+
+####################################################
+#                                                  #
+#                 System Health                    #
+#                                                  #
+####################################################
+system_health:
+
+####################################################
+#                                                  #
+#                     PiHole                       #
+#                                                  #
+####################################################
+pi_hole:
+  - host: !env_var PIHOLE_SERVER
+    api_key: !env_var PIHOLE_APIKEY
+
+####################################################
+#                                                  #
+#                    Spotcast                      #
+#                                                  #
+####################################################
+spotcast:
+  sp_dc: !env_var SPOTCAST_DC
+  sp_key: !env_var SPOTCAST_KEY

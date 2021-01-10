@@ -1,8 +1,31 @@
 views:
   - title: main
     cards:
-      - type: custom:mini-media-player
-        entity: media_player.stue_stereo
+      - type: vertical-stack
+        cards:
+        - type: 'custom:spotify-card'
+        - type: media-control
+          entity: media_player.stue_stereo
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            title: Stuen
+            cards:
+            - type: light
+              entity: light.sofa
+            - type: light
+              entity: light.spisebord
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            title: Sovevaerelse
+            cards:
+            - type: light
+              entity: light.seng
+            - type: light
+              entity: light.skrivebord
+
       - type: vertical-stack
         cards:
           - entity: weather.home
@@ -36,20 +59,16 @@ views:
                 type: gauge
               - type: gauge
                 min: 0
-                max: 120
+                max: 50
                 theme: default
-                entity: sensor.sense_temperature_f
+                entity: sensor.sense_temperature_c
                 name: Temperature
-                unit: °F
+                unit: °C
           - type: history-graph
+            title: Air Quality History
             entities:
               - entity: sensor.sense_air_quality_score
-                hours_to_show: 12
-                refresh_interval: 0
-                title: Air Quality History
           - type: history-graph
-            entities:
-              - entity: sensor.sense_temperature_f
-                hours_to_show: 12
-                refresh_interval: 0
             title: Temperature Sensor History
+            entities:
+              - entity: sensor.sense_temperature_c
